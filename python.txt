@@ -1,0 +1,33 @@
+# Calcular el área de un cuadrado
+lado = int(input("Introduce la medida del lado del cuadrado que deseas calcular: "))
+print("El área del cuadrado es ", lado**2)
+
+# Calcular el área de un rectángulo
+base = int(input("Introduce la base del rectángulo: "))
+altura = int(input("Introduce la altura del rectángulo: "))
+print("El área del rectángulo es ", base * altura)
+
+# Calcular el área de un triángulo
+base = int(input("Introduce la base del triángulo: "))
+altura = int(input("Introduce la altura del triángulo: "))
+print("El área del triángulo es", (base * altura) / 2)
+
+# Calcular el área de un círculo
+pi = 3.1416
+radio = int(input("Ingresa el radio del círculo: "))
+print("El área del círculo es ", pi * radio**2)
+
+# Calcular el área de un romboide
+base = int(input("Introduce la base del romboide: "))
+altura = int(input("Introduce la altura del romboide: "))
+print("El área del romboide es", base * altura)
+
+# Calcular el área de un pentágono
+lado = int(input("Escribe la medida de un lado del pentágono: "))
+apotema = int(input("Escribe la medida de la apotema: "))
+print("El área del pentágono es ", 0.5 * (lado * 5) * apotema)
+
+# Calcular el área de un rombo
+diametroA = int(input("Introduce la medida del diámetro A: "))
+diametroB = int(input("Introduce la medida del diámetro B: "))
+print("El área del rombo es ", 0.5 * diametroA * 
