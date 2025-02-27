@@ -1,0 +1,6 @@
+nombre = input("Ingrese su nombre: ")[::-1]
+apellido = input("Ingrese su apellido: ")[::-1]
+print(f"Nombre invertido: {nombre} {apellido}")
+
+edad = int(input("Ingrese su edad: "))
+print(f"{nombre[::-1]}, alcanzarás los 100 años en el año {2025 + (100 - edad)}.")
