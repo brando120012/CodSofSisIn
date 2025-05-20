@@ -1,0 +1,65 @@
+import speech_recognition as sr
+from moviepy.editor import VideoFileClip
+from gtts import gTTS
+from deep_translator import GoogleTranslator
+
+def get_wav_audio(mp4_file, wav_file):
+    """Extract audio from mp4 video and save as wav file."""
+    vc = VideoFileClip(mp4_file)
+    ac = vc.audio
+    ac.write_audiofile(wav_file, codec='pcm_s16le')
+    ac.close()
+    vc.close()
+
+def audio_to_text(audio_file):
+    """Convert audio file to English text using Google speech recognition."""
+    recognizer = sr.Recognizer()
+    with sr.AudioFile(audio_file) as source:
+        audio = recognizer.record(source)
+    try:
+        text = recognizer.recognize_google(audio, language='en-US')
+        return text
+    except sr.UnknownValueError:
+        return "unknown"
+    except sr.RequestError as e:
+        return f"Recognition request error: {e}"
+
+def text_translate(text, target_lang='es'):
+    """Translate text from English to target language (default Spanish)."""
+    translated = GoogleTranslator(source='auto', target=target_lang).translate(text)
+    return translated
+
+def text_to_speech(text, lang, output_file):
+    """Convert text to speech and save as mp3."""
+    tts = gTTS(text=text, lang=lang, slow=False)
+    tts.save(output_file)
+
+if __name__ == "__main__":
+    video_file = "video.mp4"
+    wav_file = "extracted_audio.wav"
+    output_mp3 = "translated_output.mp3"
+
+    # Step 1: Extract audio from video
+    print(f"Extracting audio from {video_file}...")
+    get_wav_audio(video_file, wav_file)
+
+    # Step 2: Convert audio to English text
+    print("Converting audio to text...")
+    english_text = audio_to_text(wav_file)
+    print("Recognized English text:", english_text)
+
+    # Step 3: Translate English text to Spanish
+    if english_text and english_text != "unknown":
+        print("Translating text to Spanish...")
+        spanish_text = text_translate(english_text, 'es')
+        print("Translated Spanish text:", spanish_text)
+
+        # Step 4: Convert translated text to speech
+        print("Converting translated text to speech (mp3)...")
+        text_to_speech(spanish_text, 'es', output_mp3)
+        print(f"Saved Spanish speech audio as {output_mp3}")
+    else:
+        print("Could not recognize speech from audio. No translation or speech synthesis done.")
+
+
+
