@@ -1,0 +1,4 @@
+1.- Ejecuta el programa
+2.- escribir el nombre de un Pokémon en minúsculas 
+
+Y ya te tiene que dar la imagen de un Pokémon 
